@@ -1,10 +1,10 @@
 {
   "name": "react-modal-jkf",
   "version": "1.0.0",
-  "description": "a react modal component",
+  "description": "A react modal component",
   "author": "ThomasJSimpson",
   "license": "MIT",
-  "repository": "ThomasJSimpson/react-modal-jkf",
+  "repository": "https://github.com/ThomasJSimpson/react-modal.git",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
@@ -24,7 +24,8 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^16.0.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
     "microbundle-crl": "^0.13.10",
@@ -49,5 +50,10 @@
   },
   "files": [
     "dist"
+  ],
+  "keywords": [
+    "react",
+    "reactjs",
+    "modal"
   ]
 }
