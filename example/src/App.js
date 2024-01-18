@@ -1,10 +1,16 @@
 import React from 'react'
 
-import { ExampleComponent } from 'react-modal-jkf'
+import { Modal } from 'react-modal-jkf'
+import { useModal } from 'react-modal-jkf'
 import 'react-modal-jkf/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  const { isShowing, toggle } = useModal()
+  return (
+    <Modal isShowing={isShowing} toggle={toggle}>
+      <p>Congratulations!</p>
+    </Modal>
+  )
 }
 
 export default App
