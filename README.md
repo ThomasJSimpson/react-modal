@@ -1,4 +1,3 @@
-````markdown
 # react-modal-jkf
 
 > Un composant modal React
@@ -10,7 +9,6 @@
 ```bash
 npm install --save react-modal-jkf
 ```
-````
 
 ## Utilisation
 
@@ -28,12 +26,12 @@ function Example() {
       <Modal
         isShowing={isShowing}
         toggle={toggle}
-        overlayClass='overlayClass'
-        modalClass='modalClass'
-        modalHeaderClass='modalHeaderClass'
-        headerBtnClass='headerBtnClass'
-        headerBtnIconClass='headerBtnIconClass'
-        bodyClass='bodyClass'
+        overlayClass='your-overlay-class'
+        modalClass='your-modal-class'
+        modalHeaderClass='your-modal-header-class'
+        headerBtnClass='your-modal-header-btn-class'
+        headerBtnIconClass='your-modal-header-btn-icon-class'
+        bodyClass='your-modal-body-class'
       >
         Contenu de la fenêtre modale
       </Modal>
