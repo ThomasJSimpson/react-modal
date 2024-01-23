@@ -15,7 +15,9 @@ const useModal = () => {
   const [isShowing, setIsShowing] = useState(false)
 
   const toggle = () => {
-    setIsShowing(!isShowing)
+    const nextState = !isShowing
+    setIsShowing(nextState)
+    document.body.style.overflow = nextState ? 'hidden' : 'auto'
   }
   return { isShowing, toggle }
 }
