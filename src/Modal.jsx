@@ -3,58 +3,60 @@ import ReactDOM from 'react-dom'
 import styles from './styles.module.css'
 
 /**
- * Modal est un composant qui affiche une fenêtre modale.
+ * Modal component.
  *
- * @param {Object} props - Les propriétés passées au composant.
- * @param {boolean} props.isShowing - Indique si la fenêtre modale est affichée.
- * @param {Function} props.toggle - Une fonction qui permet de basculer l'affichage de la fenêtre modale.
- * @param {string} props.overlayClass - La classe CSS à appliquer à l'overlay.
- * @param {string} props.modalClass - La classe CSS à appliquer à la fenêtre modale.
- * @param {string} props.modalHeaderClass - La classe CSS à appliquer à l'en-tête de la fenêtre modale.
- * @param {string} props.headerBtnClass - La classe CSS à appliquer au bouton de l'en-tête.
- * @param {string} props.headerBtnIconClass - La classe CSS à appliquer à l'icône du bouton de l'en-tête.
- * @param {string} props.bodyClass - La classe CSS à appliquer au corps de la fenêtre modale.
- * @param {React.ReactNode} props.children - Les éléments enfants à afficher dans le corps de la fenêtre modale.
- * @returns {React.Component} Le composant Modal.
+ * @component
+ * @param {Object} props - The component props.
+ * @param {boolean} props.isShowing - Flag indicating whether the modal is showing or not.
+ * @param {Function} props.toggle - Function to toggle the modal.
+ * @param {Function} props.closeModal - Function to close the modal.
+ * @param {string} props.overlayClass - Additional CSS class for the modal overlay.
+ * @param {string} props.modalClass - Additional CSS class for the modal.
+ * @param {string} props.bodyClass - Additional CSS class for the modal body.
+ * @param {string} props.btnClass - Additional CSS class for the modal button.
+ * @param {ReactNode} props.children - The content of the modal body.
+ * @param {ReactNode} props.btnChildren - The content of the modal button.
+ * @returns {JSX.Element|null} The modal component.
  */
 
 const Modal = ({
   isShowing,
   toggle,
+  closeModal,
   overlayClass,
   modalClass,
-  modalHeaderClass,
-  headerBtnClass,
-  headerBtnIconClass,
   bodyClass,
-  children
+  btnClass,
+  children,
+  btnChildren
 }) => {
-  const mergedModalClass = `${styles.modal} ${modalClass}`
   const mergedOverlayClass = `${styles.modalOverlay} ${overlayClass}`
+  const mergedModalClass = `${styles.modal} ${modalClass}`
   const mergedBodyClass = `${styles.modalBody} ${bodyClass}`
-  const mergedHeaderClass = `${styles.modalHeader} ${modalHeaderClass}`
-  const mergedHeaderBtnClass = `${styles.modalHeaderBtn} ${headerBtnClass}`
-  const mergedHeaderBtnIconClass = `${styles.modalHeaderBtnIcon} ${headerBtnIconClass}`
+  const mergedBtnClass = `${styles.modalBtn} ${btnClass}`
 
   return isShowing
     ? ReactDOM.createPortal(
         <div
           className={mergedOverlayClass}
-          onClick={(e) => e.target === e.currentTarget && toggle()}
+          onClick={(e) =>
+            e.target === e.currentTarget && (toggle ? toggle() : closeModal())
+          }
         >
           <section className={mergedModalClass}>
-            <div className={mergedHeaderClass}>
-              <button type='button' className={mergedHeaderBtnClass}>
-                <span onClick={toggle} className={mergedHeaderBtnIconClass}>
-                  &#x2715;
-                </span>
-              </button>
-            </div>
             <div className={mergedBodyClass}>{children}</div>
+            <button
+              type='button'
+              className={mergedBtnClass}
+              onClick={toggle || closeModal}
+            >
+              {btnChildren}
+            </button>
           </section>
         </div>,
         document.body
       )
     : null
 }
+
 export default Modal

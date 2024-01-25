@@ -1,14 +1,16 @@
 import { useState } from 'react'
 
 /**
- * Un hook personnalisé pour gérer l'état d'affichage d'une fenêtre modale.
+ * A custom hook to manage the display state of a modal window.
  *
  * @example
- * const {isShowing, toggle} = useModal();
+ * const {isShowing, openModal, closeModal, toggle} = useModal();
  *
- * @returns {Object} Un objet contenant deux propriétés :
- * - `isShowing` : Un booléen indiquant si la fenêtre modale est actuellement affichée.
- * - `toggle` : Une fonction qui permet de basculer l'affichage de la fenêtre modale.
+ * @returns {Object} An object containing four properties:
+ * - `isShowing`: A boolean indicating if the modal window is currently displayed.
+ * - `openModal`: A function to open the modal window.
+ * - `closeModal`: A function to close the modal window.
+ * - `toggle`: A function to toggle the display of the modal window.
  */
 
 const useModal = () => {
@@ -19,7 +21,16 @@ const useModal = () => {
     setIsShowing(nextState)
     document.body.style.overflow = nextState ? 'hidden' : 'auto'
   }
-  return { isShowing, toggle }
+  const openModal = () => {
+    setIsShowing(true)
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeModal = () => {
+    setIsShowing(false)
+    document.body.style.overflow = 'auto'
+  }
+  return { isShowing, toggle, openModal, closeModal }
 }
 
 export default useModal
